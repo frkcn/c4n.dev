@@ -1,3 +1,19 @@
 p {
   @apply mb-6;
 }
+
+.markdown h2, .markdown h3 {
+  @apply mt-6 mb-2;
+}
+
+.markdown p {
+  @apply mt-0 mb-6 font-normal leading-relaxed;
+}
+
+.markdown pre {
+  @apply mb-6 p-0 text-xs relative overflow-y-hidden;
+}
+
+.markdown li {
+  @apply mb-2;
+}

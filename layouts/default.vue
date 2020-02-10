@@ -1,7 +1,11 @@
 <template>
   <div class="py-8 lg:py-16 px-6 md:px-16 lg:px-24">
     <Header />
-    <nuxt />
+    <div class="lg:pl-32 mt-12">
+      <div class="max-w-md">
+        <nuxt />
+      </div>
+    </div>
   </div>
 </template>
 

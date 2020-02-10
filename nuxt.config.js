@@ -1,5 +1,19 @@
+import path from 'path'
+const glob = require('glob')
+
+let files = glob.sync( '**/*.md' , { cwd: 'content/articles' })
+
+function getSlugs(post, _) {
+  let slug = post.substr(0, post.lastIndexOf('.'))
+  return `/articles/${slug}`
+}
 
 export default {
+  generate: {
+    routes: function() {
+      return files.map(getSlugs)
+    }
+  },
   mode: 'universal',
   /*
   ** Headers of the page
@@ -65,6 +79,13 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      config.module.rules.push(
+        {
+          test: /\.md$/,
+          include: path.resolve(__dirname, "content"),
+          loader: "frontmatter-markdown-loader",
+        }
+      )
     }
   }
 }
