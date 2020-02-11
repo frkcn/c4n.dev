@@ -10,8 +10,13 @@ date: 11/02/2020
 The content will be come here soon.
 
 ```php
-public function foo ()
+<?php
+
+/**
+* comment here
+*/
+public function foo()
 {
-    return 'bar';
+    return true;
 }
 ```
