@@ -1,7 +1,4 @@
-p {
-  @apply mb-6;
-}
-
+/* purgecss start ignore */
 .markdown h2, .markdown h3 {
   @apply mt-6 mb-2;
 }
@@ -21,3 +18,4 @@ p {
 .markdown code {
   @apply leading-loose;
 }
+/* purgecss end ignore */

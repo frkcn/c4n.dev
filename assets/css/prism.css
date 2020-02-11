@@ -19,6 +19,7 @@ cyan      #2aa198 #a3be8c
 green     #859900 #81a1c1
 */
 
+/* purgecss start ignore */
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #eceff4; /* green */
@@ -147,3 +148,4 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
+/* purgecss end ignore */

@@ -12,7 +12,7 @@
           <nuxt-link :to="'/articles' + post.attributes.slug" class="text-lg text-black font-bold no-underline hover:underline">
             {{ post.attributes.title }}
           </nuxt-link>
-          <p class="text-grey-darkest text-base leading-normal mt-1">
+          <p class="text-grey-darkest text-base leading-normal mt-1 mb-6">
             {{ post.attributes.short }}
           </p>
           <div class="text-grey-darkest text-base leading-normal mt-2">
