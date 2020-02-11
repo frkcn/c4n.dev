@@ -1,23 +1,4 @@
-/*
-SOLARIZED HEX
---------- -------
-base03    #002b36
-base02    #073642
-base01    #586e75 #eceff4
-base00    #657b83 #8fbcbb
-base0     #839496
-base1     #93a1a1
-base2     #eee8d5
-base3     #fdf6e3 #2e3440
-yellow    #b58900 #8fbcbb
-orange    #cb4b16 #eceff4
-red       #dc322f
-magenta   #d33682
-violet    #6c71c4
-blue      #268bd2 #81a1c1
-cyan      #2aa198 #a3be8c
-green     #859900 #81a1c1
-*/
+/* purgecss start ignore */
 
 /*
  * Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
@@ -253,8 +234,6 @@ Styleguide Nord
   --nord15: #b48ead;
 }
 
-
-/* purgecss start ignore */
 code[class*="language-"],
 pre[class*="language-"] {
 	color: var(--nord4);
