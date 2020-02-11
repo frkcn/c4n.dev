@@ -48,8 +48,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/css/main.css',
-    '~/assets/css/prism.css'
+    '@/assets/css/main.css',
+    '@/assets/css/prism.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -100,6 +100,13 @@ export default {
           }
         }
       )
+    }
+  },
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['script', 'style', 'font'].includes(type)
+      }
     }
   }
 }
