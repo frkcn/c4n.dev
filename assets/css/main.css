@@ -17,3 +17,7 @@ p {
 .markdown li {
   @apply mb-2;
 }
+
+.markdown code {
+  @apply leading-loose;
+}
