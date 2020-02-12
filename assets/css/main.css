@@ -1,4 +1,46 @@
 /* purgecss start ignore */
+::-moz-selection { 
+  background: #d8dee9;
+}
+
+::selection { 
+  background: #d8dee9; 
+}
+
+a .h {
+  display: inline-block;
+  position: relative;
+}
+
+.work .h::before {
+  background: #88c0d0;
+}
+
+.personal .h::before {
+  background: #ebcb8b;
+}
+
+a .h::before {
+  width: calc(100%);
+  display: inline-block;
+  position: absolute;
+  height: 12px;
+  background:#88c0d0;
+  content: " ";
+  opacity: .3;
+  top: 18px;
+  left: -4px;
+  -moz-transition: all .1s ease-out;
+  -o-transition: all .1s ease-out;
+  -ms-transition: all .1s ease-out;
+  -webkit-transition: all .1s ease-out;
+  transition: all .1s ease-out;
+}
+
+a:hover .h::before {
+  left: 4px;
+}
+
 .markdown h2, .markdown h3 {
   @apply mt-6 mb-2;
 }
@@ -8,7 +50,7 @@
 }
 
 .markdown pre {
-  @apply mb-6 p-0 text-xs relative overflow-y-hidden;
+  @apply mb-6 p-0 relative overflow-y-hidden;
 }
 
 .markdown li {
