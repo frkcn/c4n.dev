@@ -1,7 +1,6 @@
 ---
 title: Hello, World!
-slug: /hello-world
-short: Welcome on board.
+description: Welcome on board.
 date: 11/02/2020
 ---
 

@@ -1,34 +1,33 @@
 <template>
   <article>
-    <header>
+    <header class="mb-8">
       <h1 class="text-5xl font-extrabold m-xs-b-6 no-line-height tight-letters">
-        {{ post.attributes.title }}
+        {{ page.title }}
       </h1>
-      <p class="text-sm font-silent">
-        {{ post.attributes.date }}
-      </p>
+      <div class="flex justify-between">
+        <p class="text-sm font-silent">
+          {{ page.date }}
+        </p>
+        <p class="text-sm font-silent">
+          {{ Math.ceil(page.readingTime / 60000) }} min read
+        </p>
+      </div>
     </header>
-    <div v-html="post.html" class="markdown" />
+    <nuxt-content :document="page" />
   </article>
 </template>
 <script>
 export default {
-  async asyncData ({ params }) {
-    const post = await import(`~/content/articles/${params.slug}.md`)
-    return { post }
-  },
-  head () {
+  async asyncData ({ $content, params, error }) {
+    const slug = params.slug
+    const page = await $content('articles/' + slug)
+      .fetch()
+      .catch(() => {
+        error({ statusCode: 404, message: 'Page not found' })
+      })
+
     return {
-      title: this.post.attributes.title,
-      meta: [{
-        hid: 'description',
-        name: 'description',
-        content: this.post.attributes.short
-      }],
-      link: [{
-        rel: 'canonical',
-        href: 'https://c4n.dev' + this.post.attributes.slug
-      }]
+      page
     }
   }
 }

@@ -1,27 +1,4 @@
-import path from 'path'
-const glob = require('glob')
-import MarkdownIt from 'markdown-it'
-import mip from 'markdown-it-prism'
-
-let files = glob.sync( '**/*.md' , { cwd: 'content/articles' })
-
-function getSlugs(post, _) {
-  let slug = post.substr(0, post.lastIndexOf('.'))
-  return `/articles/${slug}`
-}
-
-const md = new MarkdownIt({
-  html: true,
-  typographer: true
-})
-md.use(mip)
-
 export default {
-  generate: {
-    routes: function() {
-      return files.map(getSlugs)
-    }
-  },
   mode: 'universal',
   /*
   ** Headers of the page
@@ -48,8 +25,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '@/assets/css/main.css',
-    '@/assets/css/prism.css'
+    '~/assets/css/main.css',
+    '~/assets/css/prism-nord.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -65,6 +42,11 @@ export default {
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss'
   ],
+  tailwindcss: {
+    configPath: '~/tailwind.config.js',
+    cssPath: '~/assets/css/tailwind.css',
+    exposeConfig: false
+  },
   /*
   ** Nuxt.js modules
   */
@@ -72,8 +54,18 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxt/content'
   ],
+  hooks: {
+    'content:file:beforeInsert': (document) => {
+      if (document.extension === '.md') {
+        const { time } = require('reading-time')(document.text)
+
+        document.readingTime = time
+      }
+    }
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -87,20 +79,6 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
-      config.module.rules.push(
-        {
-          test: /\.md$/,
-          include: path.resolve(__dirname, "content"),
-          loader: "frontmatter-markdown-loader",
-          options: {
-            markdown (body) {
-              return md.render(body)
-            }
-          }
-        }
-      )
-    },
-    extractCSS: true
-  }
+    extend (config, ctx) {}
+  },
 }

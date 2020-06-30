@@ -12,20 +12,19 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxt/content": "^1.4.0",
+    "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/dotenv": "^1.4.0",
-    "frontmatter-markdown-loader": "^3.1.0",
-    "markdown-it": "^10.0.0",
-    "markdown-it-prism": "^2.0.3",
     "moment": "^2.24.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.12.2",
+    "reading-time": "^1.2.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^1.0.1",
-    "@nuxtjs/eslint-module": "^1.0.0",
-    "@nuxtjs/tailwindcss": "^1.0.0",
-    "babel-eslint": "^10.0.1",
+    "@nuxtjs/eslint-config": "^3.0.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/tailwindcss": "^2.0.0",
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.1.0",
-    "eslint-plugin-nuxt": ">=0.4.2"
+    "eslint-plugin-nuxt": "^1.0.0"
   }
 }

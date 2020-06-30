@@ -236,7 +236,8 @@ Styleguide Nord
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: var(--nord4);
+	color: var(--nord4) !important;
+  text-shadow: none !important;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
@@ -250,12 +251,12 @@ pre[class*="language-"] {
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-	background: var(--nord2);
+	background: var(--nord2) !important;
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
-	background: var(--nord2);
+	background: var(--nord2) !important;
 }
 
 /* Code blocks */
@@ -268,7 +269,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background-color: var(--nord0);
+	background-color: var(--nord0) !important;
 }
 
 /* Inline code */
@@ -278,17 +279,17 @@ pre[class*="language-"] {
 }
 
 .token.comment {
-	color: var(--nord3);
+	color: var(--nord3) !important;
 }
 
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: var(--nord10);
+	color: var(--nord10) !important;
 }
 
 .token.punctuation {
-	color: var(--nord6);
+	color: var(--nord6) !important;
 }
 
 .token.namespace {
@@ -296,7 +297,7 @@ pre[class*="language-"] {
 }
 
 .token.number {
-	color: var(--nord15);
+	color: var(--nord15) !important;
 }
 
 .token.property,
@@ -304,50 +305,50 @@ pre[class*="language-"] {
 .token.variable,
 .token.boolean,
 .token.constant {
-	color: var(--nord4);
+	color: var(--nord4) !important;
 }
 
 .token.string,
 .token.char,
 .token.attr-value {
-	color: var(--nord14);
+	color: var(--nord14) !important;
 }
 
 .token.class-name,
 .token.tag {
-	color: var(--nord7);
+	color: var(--nord7) !important;
 }
 
 .token.atrule,
 .token.keyword,
 .token.selector,
 .token.symbol {
-	color: var(--nord9);
+	color: var(--nord9) !important;
 }
 
 .token.deleted {
-	color: var(--nord11);
+	color: var(--nord11) !important;
 }
 
 .token.function,
 .token.builtin,
 .token.url,
 .token.inserted {
-	color: var(--nord8);
+	color: var(--nord8) !important;
 }
 
 .token.regex,
 .token.entity {
-	color: var(--nord13);
+	color: var(--nord13) !important;
 	/* background: #eee8d5; */
 }
 
 .token.package {
-	color: var(--nord10);
+	color: var(--nord10) !important;
 }
 
 .token.important {
-	color: var(--nord13);
+	color: var(--nord13) !important;
 }
 
 .token.important,
