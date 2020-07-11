@@ -15,8 +15,11 @@
             <nuxt-link to="/" class="text-gray-700 font-semibold mr-5 hover:text-black">
               About
             </nuxt-link>
-            <nuxt-link to="/articles" class="text-gray-700 font-semibold hover:text-black">
+            <nuxt-link to="/articles" class="text-gray-700 font-semibold mr-5 hover:text-black">
               Articles
+            </nuxt-link>
+            <nuxt-link to="/packages" class="text-gray-700 font-semibold hover:text-black">
+              Packages
             </nuxt-link>
           </div>
         </div>

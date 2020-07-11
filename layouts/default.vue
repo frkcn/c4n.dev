@@ -1,9 +1,13 @@
 <template>
-  <div class="py-8 lg:py-16 px-6 md:px-16 lg:px-24">
-    <Header />
-    <div class="lg:pl-32 mt-12">
-      <div class="max-w-xl">
-        <nuxt />
+  <div class="flex justify-center">
+    <div class="container">
+      <div class="py-8 lg:py-16 px-6 md:px-16 lg:px-24">
+        <Header />
+        <div class="lg:pl-32 mt-12">
+          <div class="">
+            <nuxt />
+          </div>
+        </div>
       </div>
     </div>
   </div>
