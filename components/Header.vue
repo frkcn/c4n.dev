@@ -39,11 +39,14 @@
     </div>
     <div v-if="isOpen" class="md:hidden z-10 bg-white fixed inset-0 pt-24 block">
       <div class="overflow-y-auto py-8 px-12 max-h-full overflow-y-auto">
-        <a href="/" class="block text-black font-bold no-underline mb-8">
+        <a href="/" class="block text-black font-bold no-underline mb-4">
           About
         </a>
-        <a href="/articles" class="block text-black font-bold no-underline">
+        <a href="/articles" class="block text-black font-bold no-underline mb-4">
           Articles
+        </a>
+        <a href="/packages" class="block text-black font-bold no-underline">
+          Packages
         </a>
       </div>
     </div>

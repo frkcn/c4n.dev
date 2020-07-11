@@ -1,6 +1,6 @@
 ---
 title: Kasiyer Iyzico
-description: Kasiyer makes Iyzico's subscription billing services easy and fun for your Laravel application.
+description: Kasiyer makes easy Iyzico's subscription billing services for your Laravel application. It handles almost requirements for subscription billing code. In addition to subscription management, Kasiyer also provides swapping subscriptions, cancelling subscription, single charges and refunds.
 date: 09/07/2020
 ---
 
