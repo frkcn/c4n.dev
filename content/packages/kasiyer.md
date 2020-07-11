@@ -146,7 +146,7 @@ Most interactions with Iyzico are done through <span class="h">[its checkout for
 ```php
 $user = User::find(1);
 
-$checkoutForm = $user->newSubscription('basic', $basic = 'ba304be8-f17a-4f23-8500-f7d47b6927a1')
+$checkoutForm = $user->newSubscription('default', $default = 'ba304be8-f17a-4f23-8500-f7d47b6927a1')
     ->returnTo(route('home'))
     ->create();
 
@@ -174,7 +174,7 @@ $user->handleSubscription($request->token);
 ### Checking Subscription Status
 Once a user is subscribed to your application, you may check their subscription status using a variety of convenient methods. First, the `subscribed` method returns `true` if the user has an active subscription, even if the subscription is currently within its trial period:
 ```php
-if ($user->subscribed('basic')) {
+if ($user->subscribed('default')) {
     //
 }
 ```
@@ -182,7 +182,7 @@ You can use `subscribed` method for allowing you to filter access to routes and 
 ```php
 public function handle($request, Closure $next)
 {
-    if ($request->user() && !$request->user()->subscribed('basic')) {
+    if ($request->user() && !$request->user()->subscribed('default')) {
         // This user is not a paying customer.
         return redirect('billing');
     }
@@ -193,38 +193,38 @@ public function handle($request, Closure $next)
 
 If you want to show your users that they are still on their trial period:
 ```php
-if ($user->subscription('basic')->onTrial()) {
+if ($user->subscription('default')->onTrial()) {
     //
 }
 ```
 If you would like to know a user subscribed to given plan based on a given Iyzico plan ID:
 ```php
-if ($user->subscribedToPlan($monthly = 'ba304be8-f17a-4f23-8500-f7d47b6927a1', 'basic')) {
+if ($user->subscribedToPlan($monthly = 'ba304be8-f17a-4f23-8500-f7d47b6927a1', 'default')) {
     //
 }
 ```
 The `recurring` method may be used to determine if the user is currently subscribed and is no longer within their trial period.
 ```php
-if ($user->subscription('basic')->recurring()) {
+if ($user->subscription('default')->recurring()) {
     //
 }
 ```
 #### Cancelled Subscription Status
 To determine if the user was once an active subscriber, but has cancelled their subscription, you may use the `cancelled` method:
 ```php
-if ($user->subscription('basic')->cancelled()) {
+if ($user->subscription('default')->cancelled()) {
     //
 }
 ```
 You may also determine if a user has cancelled their subscription, but are still on their "grace period" until the subscription fully expires. For example, if a user cancels a subscription on March 5th that was originally scheduled to expire on March 10th, the user is on their "grace period" until March 10th. Note that the subscribed method still returns true during this time:
 ```php
-if ($user->subscription('basic')->onGracePeriod()) {
+if ($user->subscription('default')->onGracePeriod()) {
     //
 }
 ```
 To determine if the user has cancelled their subscription and is no longer within their "grace period", you may use the `ended` method:
 ```php
-if ($user->subscription('basic')->ended()) {
+if ($user->subscription('default')->ended()) {
     //
 }
 ```
@@ -255,7 +255,7 @@ Subscription::query()->notOnGracePeriod();
 #### Past Due Status
 If a payment fails for a subscription, it will be marked as `past_due`. When your subscription is in this state it will not be active until you <span class="h">[retry payment attempt](#retry-payment-attempt)</span> and result returns `true`. You may determine if a subscription is past due using the `pastDue` method on the subscription instance:
 ```php
-if ($user->subscription('basic')->pastDue()) {
+if ($user->subscription('default')->pastDue()) {
     //
 }
 ```
@@ -284,7 +284,7 @@ validated with a charge of 1 TL (USD, EUR) and this amount is refunded immediate
 ```php
 $user = User::find(1);
 
-$updateCheckoutForm = $user->subscription('basic')
+$updateCheckoutForm = $user->subscription('default')
             ->returnTo(route('home'))
             ->cardUpdate();
 ```
@@ -300,7 +300,7 @@ If a payment of a recurring payment is not `successful`, this method retries pay
 ```php
 $user = User::find(1);
 
-$user->subscription('basic')->retry();
+$user->subscription('default')->retry();
 ```
 
 ### Changing Plans
@@ -308,14 +308,14 @@ After a user has subscribed to your application, they may occasionally want to c
 ```php
 $user = User::find(1);
 
-$user->subscription('basic')->swap($premium = 'ba304be8-f17a-4f23-8500-f7d47b6927a1');
+$user->subscription('default')->swap($premium = 'ba304be8-f17a-4f23-8500-f7d47b6927a1');
 ```
 If the user is on trial, the trial period will be maintained.  
 If you would like to swap plans and cancel any trial period the user is currently on, you may use the skipTrial method:
 ```php
 $user = User::find(1);
 
-$user->subscription('basic')
+$user->subscription('default')
     ->skipTrial()
     ->swap($premium = 'ba304be8-f17a-4f23-8500-f7d47b6927a1');
 ```
@@ -334,13 +334,13 @@ To cancel a subscription, call the `cancel` method on the user's subscription:
 ```php
 $user = User::find(1);
 
-$user->subscription('basic')->cancel();
+$user->subscription('default')->cancel();
 ```
 When a subscription `is cancelled`, Kasiyer will automatically set the `ends_at` column in your database. This column is used to know when the `subscribed` method should begin returning `false`. For example, if a customer cancels a subscription on March 1st, but the subscription was not scheduled to end until March 5th, the subscribed method will continue to return `true` until March 5th.
 
 You may determine if a user has `cancelled` their subscription but are still on their "grace period" using the `onGracePeriod` method:
 ```php
-if ($user->subscription('basic')->onGracePeriod()) {
+if ($user->subscription('default')->onGracePeriod()) {
     //
 }
 ```
@@ -392,7 +392,7 @@ Once you are ready to create an actual subscription for the user, you may use th
 ```php
 $user = User::find(1);
 
-$checkoutForm = $user->newSubscription('basic', $basic = 'ba304be8-f17a-4f23-8500-f7d47b6927a1')
+$checkoutForm = $user->newSubscription('default', $default = 'ba304be8-f17a-4f23-8500-f7d47b6927a1')
     ->returnTo(route('home'))
     ->create();
 
@@ -494,7 +494,7 @@ When listing the transactions for the customer, you may use the transaction's he
 ### Past & Upcoming Payments
 You may use the `lastPayment` and `nextPayment` methods to display a customer's past or upcoming payments for recurring subscriptions:
 ```php
-$subscription = $user->subscription('basic');
+$subscription = $user->subscription('default');
 
 $lastPayment = $subscription->lastPayment();
 $nextPayment = $subscription->nextPayment();
