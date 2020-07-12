@@ -319,6 +319,13 @@ pre[class*="language-"] {
 	color: var(--nord7) !important;
 }
 
+
+
+.token.operator {
+  background-color: var(--nord0) !important;
+}
+
+.token.operator,
 .token.atrule,
 .token.keyword,
 .token.selector,
