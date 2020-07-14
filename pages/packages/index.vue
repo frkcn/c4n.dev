@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-2xl font-extrabold text-black mb-4">
+    <h1 class="text-2xl font-extrabold mb-4">
       Packages
     </h1>
     <div class="text-lg text-grey-darkest leading-normal spaced-y-6">
@@ -9,7 +9,7 @@
     <div class="mt-12 spaced-y-10">
       <div v-for="pkg in packages" :key="pkg.title">
         <div>
-          <nuxt-link :to="'/packages/' + pkg.slug" class="text-lg text-black font-bold no-underline hover:underline">
+          <nuxt-link :to="'/packages/' + pkg.slug" class="text-lg font-bold no-underline hover:underline">
             {{ pkg.title }}
           </nuxt-link>
           <p class="text-grey-darkest text-base leading-normal mt-1 mb-6">

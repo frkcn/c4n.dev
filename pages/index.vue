@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-2xl font-extrabold text-black mb-4">
+    <h1 class="text-2xl font-extrabold mb-4">
       Who am I?
     </h1>
     <div class="text-lg text-grey-darkest leading-normal">

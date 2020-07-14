@@ -272,6 +272,11 @@ pre[class*="language-"] {
 	background-color: var(--nord0) !important;
 }
 
+.dark-mode :not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background-color: var(--nord1) !important;
+}
+
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
@@ -319,10 +324,12 @@ pre[class*="language-"] {
 	color: var(--nord7) !important;
 }
 
-
-
 .token.operator {
   background-color: var(--nord0) !important;
+}
+
+.dark-mode .token.operator {
+  background-color: var(--nord1) !important;
 }
 
 .token.operator,

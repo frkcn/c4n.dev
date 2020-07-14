@@ -19,6 +19,14 @@
   @apply bg-yellow;
 }
 
+.dark-mode .work .h::before {
+  @apply bg-blue-dark;
+}
+
+.dark-mode .personal .h::before {
+  @apply bg-yellow-dark;
+}
+
 .h::before {
   width: calc(100%);
   display: inline-block;
@@ -34,6 +42,10 @@
   -ms-transition: all .1s ease-out;
   -webkit-transition: all .1s ease-out;
   transition: all .1s ease-out;
+}
+
+.dark-mode .h::before {
+  @apply bg-yellow-dark;
 }
 
 .h:hover::before {
@@ -126,5 +138,17 @@
 
 .nuxt-content p code {
   @apply bg-gray p-1 rounded shadow text-sm;
+}
+
+.nuxt-content p code {
+  @apply bg-gray p-1 rounded shadow text-sm;
+}
+
+.nuxt-content p code {
+  @apply bg-gray p-1 rounded shadow text-sm;
+}
+
+.dark-mode .nuxt-content p code {
+  @apply bg-gray-dark;
 }
 /* purgecss end ignore */

@@ -8,17 +8,23 @@
           </a>
         </div>
         <div>
-          <nuxt-link to="/" class="block text-black no-underline font-bold text-xl lg:text-3xl font-extrabold leading-none lg:leading-tight">
-            Faruk Can
-          </nuxt-link>
+          <div class="flex">
+            <nuxt-link to="/" class="block no-underline font-bold text-xl lg:text-3xl font-extrabold leading-none lg:leading-tight">
+              Faruk Can
+            </nuxt-link>
+            <button class="ml-4 focus:outline-none" @click="toggle">
+              <IconDark v-if="$colorMode.preference === 'light'" />
+              <IconLight v-else />
+            </button>
+          </div>
           <div class="hidden md:flex mt-1 lg:mt-6 uppercase tracking-wide text-xs">
-            <nuxt-link to="/" class="text-gray-700 font-semibold mr-5 hover:text-black">
+            <nuxt-link to="/" class="text-gray-700 font-semibold mr-5">
               About
             </nuxt-link>
-            <nuxt-link to="/articles" class="text-gray-700 font-semibold mr-5 hover:text-black">
+            <nuxt-link to="/articles" class="text-gray-700 font-semibold mr-5">
               Articles
             </nuxt-link>
-            <nuxt-link to="/packages" class="text-gray-700 font-semibold hover:text-black">
+            <nuxt-link to="/packages" class="text-gray-700 font-semibold">
               Packages
             </nuxt-link>
           </div>
@@ -54,7 +60,14 @@
 </template>
 
 <script>
+import IconDark from '@/assets/icons/dark.svg?inline'
+import IconLight from '@/assets/icons/light.svg?inline'
+
 export default {
+  components: {
+    IconDark,
+    IconLight
+  },
   data () {
     return {
       isOpen: false
@@ -87,6 +100,9 @@ export default {
       this.$nextTick(() => {
         this.$refs.openButton.focus()
       })
+    },
+    toggle () {
+      this.$colorMode.preference = this.$colorMode.value === 'light' ? 'dark' : 'light'
     }
   }
 }

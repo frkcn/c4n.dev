@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center">
+  <div class="flex justify-center min-h-screen bg-white text-black dark:bg-black-dark dark:text-white">
     <div class="container">
       <div class="py-8 lg:py-16 px-6 md:px-16 lg:px-24">
         <Header />
