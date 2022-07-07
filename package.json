@@ -15,7 +15,7 @@
     "@nuxt/content": "^1.4.0",
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/dotenv": "^1.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "nuxt": "^2.12.2",
     "reading-time": "^1.2.0"
   },
