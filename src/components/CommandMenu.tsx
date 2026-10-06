@@ -132,7 +132,7 @@ function CommandMenu({ notes }: { notes: MenuNote[] }) {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 flex justify-center items-start px-4 pt-[12vh] sm:pt-40 bg-ink/8 text-sm"
+          className="fixed inset-0 z-50 flex justify-center items-start px-4 pt-[12vh] sm:pt-40 backdrop-blur-xs text-sm"
           onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}
         >
           <div
