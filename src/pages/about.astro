@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+	{
+		years: "2016–now",
+		company: "Tarfin",
+		link: "https://tarfin.com",
+		role: "Founding engineer & CTO",
+		highlights: [
+			"Brought ML credit scoring into production with the data science team",
+			"Integrated with major banks for real-time underwriting and payment automation",
+			"Built the in-house payment gateway for collections and virtual POS",
+			"Launched Tarfin Mobile for retailers and farmers",
+			"Led AI R&D: virtual call center agents, document, photo and signature similarity",
+		],
+	},
+	{
+		years: "2014–2016",
+		company: "Advelvet",
+		role: "Software engineer",
+		summary: "An ML-powered ad decision engine for Google AdX publishers.",
+	},
+	{
+		years: "2013–2014",
+		company: "Turkish Coal Enterprises",
+		role: "Software engineer",
+		summary: "Electronic document management and strategic plan monitoring.",
+	},
+	{
+		years: "2010–2013",
+		company: "Ondokuz Mayıs University",
+		role: "Software engineer",
+		summary: "Faculty website and CMS; led the Free and Open Source Student Club.",
+	},
+];
+
+const elsewhere = [
+	{ label: "LinkedIn", text: "in/frkcn", link: "https://linkedin.com/in/frkcn" },
+	{ label: "GitHub", text: "frkcn", link: "https://github.com/frkcn" },
+	{ label: "Twitter", text: "@frkcn", link: "https://x.com/frkcn" },
+	{ label: "Instagram", text: "@frkcn", link: "https://instagram.com/frkcn" },
+	{ label: "Email", text: "faarukcan at gmail dot com" },
+];
+---
+
+<Layout title='About — Faruk Can'>
+	<h1 class="mb-7">About</h1>
+	<div class="space-y-4">
+		<p>
+			Hi, I'm Faruk Can. I've been writing software for more than fifteen years, and since 2016
+			I've been building Tarfin from the ground up as its founding engineer and CTO. We started with
+			a prototype; today it's an ML-powered financial platform serving farmers in more than one country.
+		</p>
+		<p>
+			Along the way I grew the engineering team from nothing, and now lead engineering, product and
+			design across several countries. Day to day that means architecture, ML and data, bank
+			integrations, payments, and keeping a fintech's cloud secure and up.
+		</p>
+	</div>
+
+	<section class="mt-10">
+		<h2 class="mb-[18px]">Experience</h2>
+		<div class="space-y-[22px]">
+			{experience.map((job) => (
+				<div class="grid grid-cols-[72px_minmax(0,1fr)] gap-[22px]">
+					<span class="mt-0.5 text-xs text-muted tabular-nums whitespace-nowrap">{job.years}</span>
+					<div>
+						{job.link
+							? <a href={job.link} target="_blank" rel="noopener noreferrer">{job.company}</a>
+							: <span class="text-link font-[450]">{job.company}</span>}
+						<span class="block mt-px text-xs text-muted">{job.role}</span>
+						{job.summary && <p class="mt-1.5">{job.summary}</p>}
+						{job.highlights && (
+							<ul class="dots mt-1.5 space-y-1">
+								{job.highlights.map((item) => <li>{item}</li>)}
+							</ul>
+						)}
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="mt-10">
+		<h2 class="mb-[18px]">Education</h2>
+		<div class="grid grid-cols-[72px_minmax(0,1fr)] gap-[22px]">
+			<span class="mt-0.5 text-xs text-muted tabular-nums whitespace-nowrap">2009–2013</span>
+			<div>
+				BSc in Computer Engineering
+				<span class="block mt-px text-xs text-muted">Ondokuz Mayıs University</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="mt-10">
+		<h2 class="mb-3.5">Elsewhere</h2>
+		<dl class="grid grid-cols-[72px_minmax(0,1fr)] gap-x-[22px] gap-y-1.5">
+			{elsewhere.map((item) => (
+				<>
+					<dt class="mt-0.5 text-xs text-muted">{item.label}</dt>
+					<dd class="min-w-0 break-words">
+						{item.link
+							? <a href={item.link} target="_blank" rel="noopener noreferrer">{item.text}</a>
+							: item.text}
+					</dd>
+				</>
+			))}
+		</dl>
+	</section>
+</Layout>

@@ -1,11 +1,44 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts } from '../utils/posts';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = (await getPosts()).slice(0, 4);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title='Faruk Can'>
+	<section>
+		<h2 class="mb-2.5">About me</h2>
+		<p class="mb-4">
+			Hi, I'm Faruk. I'm the founding engineer and CTO at <a href="https://tarfin.com" target="_blank" rel="noopener noreferrer">Tarfin</a>,
+			and I live in Sakarya, Türkiye, with my lovely wife and our son.
+		</p>
+		<p>Outside of software, I love design and a good cup of coffee. This is where I write about all three.</p>
+	</section>
+
+	<section class="mt-10">
+		<h2 class="mb-2.5">Now</h2>
+		<ul class="dots space-y-[7px]">
+			<li>Leading engineering, product and design at <a href="https://tarfin.com" target="_blank" rel="noopener noreferrer">Tarfin</a>, since 2016</li>
+			<li>Building <a href="https://nullsql.com" target="_blank" rel="noopener noreferrer">Null</a>, a SQL client for macOS with AI that explains errors and suggests fixes</li>
+		</ul>
+	</section>
+
+	{posts.length > 0 && (
+		<section class="mt-10">
+			<h2 class="mb-4">Blog</h2>
+			<PostList posts={posts} />
+			<a href="/blog" class="link-muted inline-block mt-1">All notes</a>
+		</section>
+	)}
+
+	<section class="mt-10">
+		<h2 class="mb-2.5">Contact</h2>
+		<p>
+			If you have a question or want to work together, email me at <span class="whitespace-nowrap text-link font-[450]">faarukcan at gmail dot com</span>.
+			My code lives on <a href="https://github.com/frkcn" target="_blank" rel="noopener noreferrer">GitHub</a>,
+			my career on <a href="https://linkedin.com/in/frkcn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+			and the rest on <a href="https://x.com/frkcn" target="_blank" rel="noopener noreferrer">Twitter</a>{" "}and <a href="https://instagram.com/frkcn" target="_blank" rel="noopener noreferrer">Instagram</a>.
+		</p>
+	</section>
 </Layout>

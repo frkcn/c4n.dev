@@ -1,0 +1,19 @@
+---
+import HeaderItem from './HeaderItem.astro';
+import Theme from './Theme';
+
+const headerItems = [
+  { name: "About", path: "/about" },
+  { name: "Blog", path: "/blog" },
+];
+---
+
+<header class="flex justify-between items-center gap-5 mb-[46px]">
+  <a href="/" data-key="H" aria-keyshortcuts="H" class="text-ink font-medium tracking-[-.2px] hover:no-underline">Faruk Can</a>
+  <nav class="flex items-center gap-5">
+    {headerItems.map((item) => (
+      <HeaderItem name={item.name} path={item.path} />
+    ))}
+    <Theme client:load />
+  </nav>
+</header>

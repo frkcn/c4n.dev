@@ -1,0 +1,41 @@
+---
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/PostList.astro';
+import { formatLongDate } from '../../utils/date';
+import { getPosts, readingTime } from '../../utils/posts';
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	return posts.map((post, index) => {
+		// The next two older notes, wrapping to the newest ones at the end of the list.
+		const others = [...posts.slice(index + 1), ...posts.slice(0, index)];
+		return { params: { id: post.id }, props: { post, more: others.slice(0, 2) } };
+	});
+}
+
+const { post, more } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} — Faruk Can`}>
+	<article>
+		<h1>{post.data.title}</h1>
+		<p class="flex gap-3 mt-1.5 mb-8 text-xs text-muted tabular-nums">
+			<time datetime={post.data.date.toISOString()}>{formatLongDate(post.data.date)}</time>
+			<span>{readingTime(post)} min read</span>
+		</p>
+		<div class="prose">
+			<Content />
+		</div>
+		<nav aria-label="Keep reading" class="mt-12">
+			{more.length > 0 && (
+				<>
+					<h2 class="mb-4">Keep reading</h2>
+					<PostList posts={more} />
+				</>
+			)}
+			<a href="/blog" class="link-muted inline-block mt-1">All notes</a>
+		</nav>
+	</article>
+</Layout>

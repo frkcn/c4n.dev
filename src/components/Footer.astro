@@ -1,0 +1,17 @@
+---
+import CommandMenu, { type MenuNote } from "./CommandMenu";
+import Time from "./Time";
+import { formatShortDate } from "../utils/date";
+import { getPosts } from "../utils/posts";
+
+const notes: MenuNote[] = (await getPosts()).map((post) => ({
+  title: post.data.title,
+  href: `/blog/${post.id}`,
+  date: formatShortDate(post.data.date),
+}));
+---
+
+<footer class="flex flex-wrap justify-between items-center gap-4 pt-18 pb-12 text-xs text-muted">
+  <span class="font-mono"><Time client:load /></span>
+  <CommandMenu client:load notes={notes} />
+</footer>

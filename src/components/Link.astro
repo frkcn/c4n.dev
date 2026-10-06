@@ -1,0 +1,11 @@
+---
+import type { LinkProps } from "../types/link";
+
+interface Props extends LinkProps {}
+
+const { link, target } = Astro.props;
+---
+
+<a href={link} target={target} class="hover:text-ink transition-colors">
+  <slot />
+</a>

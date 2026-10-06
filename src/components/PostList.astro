@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatLongDate } from '../utils/date';
+import { readingTime } from '../utils/posts';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul>
+  {posts.map((post) => (
+    <li class="mb-[13px] leading-[1.45]">
+      <a href={`/blog/${post.id}`}>{post.data.title}</a>
+      <span class="flex gap-3 mt-[3px] text-[11px] text-muted tabular-nums">
+        <time datetime={post.data.date.toISOString()}>{formatLongDate(post.data.date)}</time>
+        <span>{readingTime(post)} min read</span>
+        {post.data.draft && <span>draft</span>}
+      </span>
+    </li>
+  ))}
+</ul>

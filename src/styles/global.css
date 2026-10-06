@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --paper: #fdfdfc;
+  --ink: #292824;
+  --link: #080808;
+  --muted: #77746d;
+  --code: #f2f0e9;
+  --chip: #efede7;
+  --mark: #f0c400;
+  --quote-rule: #d5d2ca;
+  --quote-ink: #59564d;
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #121212;
+  --ink: #deddd8;
+  --link: #ffffff;
+  --muted: #9d9b96;
+  --code: #1d1d1c;
+  --chip: #242424;
+  --mark: #ffe04a;
+  --quote-rule: #45433e;
+  --quote-ink: #b6b3aa;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-link: var(--link);
+  --color-muted: var(--muted);
+  --color-code: var(--code);
+  --color-chip: var(--chip);
+  --color-mark: var(--mark);
+}
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+    scrollbar-color: var(--muted) var(--paper);
+    background: var(--paper);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  ::selection {
+    background: #ffe04a;
+    color: #121212;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+  }
+
+  a {
+    color: var(--link);
+    font-weight: 450;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--muted);
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -.2px;
+  }
+
+  h2 {
+    font-weight: 600;
+    line-height: 1.5;
+  }
+}
+
+@layer components {
+  /* Quiet secondary link, e.g. "All notes". */
+  .link-muted {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: var(--chip);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  /* List bullet: a small yellow square, echoing the old cursor. */
+  .dots {
+    list-style: none;
+    padding-left: 16px;
+  }
+
+  .dots > li {
+    position: relative;
+  }
+
+  .dots > li::before,
+  .prose ul > li::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: calc(.85em - 2px);
+    width: 4px;
+    height: 4px;
+    background: var(--mark);
+  }
+
+  /* Long-form Markdown at body size; hierarchy comes from weight and space. */
+  .prose > * {
+    margin-bottom: 20px;
+  }
+
+  .prose > :last-child {
+    margin-bottom: 0;
+  }
+
+  .prose h2 {
+    margin: 34px 0 10px;
+  }
+
+  .prose h3 {
+    font-weight: 600;
+    margin: 28px 0 8px;
+  }
+
+  .prose strong {
+    color: var(--link);
+    font-weight: 550;
+  }
+
+  .prose ul {
+    list-style: none;
+    padding-left: 16px;
+  }
+
+  .prose ul > li {
+    position: relative;
+  }
+
+  .prose ol {
+    list-style: decimal;
+    padding-left: 24px;
+  }
+
+  .prose li + li {
+    margin-top: 7px;
+  }
+
+  .prose blockquote {
+    margin: 28px 0;
+    padding-left: 22px;
+    border-left: 2px solid var(--quote-rule);
+    color: var(--quote-ink);
+  }
+
+  .prose :not(pre) > code {
+    background: var(--code);
+    padding: .1em .35em;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: .85em;
+  }
+
+  .prose pre {
+    padding: 16px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+
+  /* Code blocks sit on a soft tint; Shiki only supplies token colours. */
+  .prose .astro-code {
+    background-color: var(--code) !important;
+  }
+
+  .dark .prose .astro-code span {
+    color: var(--shiki-dark) !important;
+  }
+
+  .prose hr {
+    border: 0;
+    margin-block: 32px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .prose hr::before {
+    content: "* * *";
+  }
+}

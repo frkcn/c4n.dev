@@ -1,0 +1,20 @@
+---
+import type { HeaderItemProps } from "../types/header-item";
+
+interface Props extends HeaderItemProps {}
+
+const { name, path } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = path === "/" ? pathname === "/" : pathname === path || pathname.startsWith(`${path}/`);
+const key = name.charAt(0).toUpperCase();
+---
+
+<a
+  href={path}
+  data-key={key}
+  aria-keyshortcuts={key}
+  aria-current={isActive ? "page" : undefined}
+  class:list={["hover:no-underline hover:text-link", isActive ? "text-link" : "text-muted font-normal"]}
+>
+  {name}
+</a>
