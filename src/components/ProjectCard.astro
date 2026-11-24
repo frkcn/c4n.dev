@@ -19,15 +19,17 @@ const { name, href, icon, platform, motto, mottoMono = false, description, accen
 const domain = new URL(href).hostname;
 ---
 
+<!-- Two tall cards side by side from 640px up; below that, stacked, each one row (icon, name and motto, arrow) over the description. -->
 <a href={href} target="_blank" rel="noopener noreferrer" class="project-card" style={`--accent: ${accent}`}>
-	<div class="flex items-start justify-between">
-		<Image src={icon} alt="" width={44} height={44} densities={[2, 3]} class="project-icon" />
-		<span class="project-go" aria-hidden="true">
-			<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg>
-		</span>
-	</div>
+	<Image src={icon} alt="" width={44} height={44} densities={[2, 3]} class="project-icon" />
+	<span class="project-go" aria-hidden="true">
+		<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg>
+	</span>
 
-	<h3 class="project-name">{name}<span class="project-dot" aria-hidden="true"></span></h3>
+	<h3 class="project-name">
+		{name}<span class="project-dot" aria-hidden="true"></span>
+		<span class="project-tag project-tag-inline">{platform}</span>
+	</h3>
 	<p class:list={['project-motto', mottoMono && 'font-mono text-[12.5px] tracking-tight']}>{motto}</p>
 	<p class="project-description">{description}</p>
 

@@ -107,8 +107,16 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-areas:
+      "icon . go"
+      "name name name"
+      "motto motto motto"
+      "desc desc desc"
+      "meta meta meta";
+    align-items: start;
     padding: 18px 18px 14px;
     border: 1px solid var(--card-rule);
     border-radius: 14px;
@@ -146,6 +154,7 @@
   }
 
   .project-icon {
+    grid-area: icon;
     width: 44px;
     height: 44px;
     border-radius: 11px;
@@ -166,6 +175,7 @@
 
   /* Round arrow button: an outline at rest, filled with ink on hover. */
   .project-go {
+    grid-area: go;
     display: grid;
     place-items: center;
     width: 26px;
@@ -191,6 +201,7 @@
   }
 
   .project-name {
+    grid-area: name;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -210,6 +221,7 @@
   }
 
   .project-motto {
+    grid-area: motto;
     margin-top: 6px;
     color: var(--ink);
     font-weight: 500;
@@ -217,6 +229,7 @@
   }
 
   .project-description {
+    grid-area: desc;
     margin: 4px 0 16px;
     color: var(--muted);
     font-size: 13px;
@@ -224,11 +237,12 @@
   }
 
   .project-meta {
+    grid-area: meta;
+    align-self: end;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    margin-top: auto;
     padding-top: 14px;
     border-top: 1px dashed var(--card-rule);
     color: var(--muted);
@@ -242,6 +256,62 @@
     background: var(--chip);
     font-size: 10.5px;
     line-height: 1.7;
+  }
+
+  /* The platform tag sits in the footer, except on phones (below). */
+  .project-tag-inline {
+    display: none;
+    margin-left: 2px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  /* Phones (below 640px): one row (icon, name and motto, arrow) over the
+     description; the platform tag moves up beside the name, no footer. */
+  @media (max-width: 639px) {
+    .project-card {
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        "icon name go"
+        "icon motto go"
+        "desc desc desc";
+      column-gap: 12px;
+      padding: 14px 14px 12px;
+      border-radius: 12px;
+    }
+
+    .project-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+    }
+
+    .project-go {
+      align-self: center;
+    }
+
+    .project-name {
+      margin-top: 0;
+    }
+
+    .project-motto {
+      margin-top: 1px;
+      font-size: 13px;
+    }
+
+    .project-description {
+      margin: 10px 0 0;
+    }
+
+    .project-tag-inline {
+      display: inline-block;
+    }
+
+    .project-meta {
+      display: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
