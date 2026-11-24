@@ -12,6 +12,9 @@
   --mark: #f0c400;
   --quote-rule: #d5d2ca;
   --quote-ink: #59564d;
+  --card: #f9f8f5;
+  --card-rule: #ebe9e3;
+  --card-rule-hover: #d5d2ca;
   color-scheme: light;
 }
 
@@ -25,6 +28,9 @@
   --mark: #ffe04a;
   --quote-rule: #45433e;
   --quote-ink: #b6b3aa;
+  --card: #171717;
+  --card-rule: #262625;
+  --card-rule-hover: #3a3936;
   color-scheme: dark;
 }
 
@@ -93,6 +99,162 @@
   .link-muted {
     color: var(--muted);
     font-weight: 400;
+  }
+
+  /* Project cards: a quiet paper surface. Each app brings one colour,
+     its --accent, for the dot after its name and a glow on hover. */
+  .project-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 18px 14px;
+    border: 1px solid var(--card-rule);
+    border-radius: 14px;
+    background: var(--card);
+    color: var(--ink);
+    font-weight: 400;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+
+  /* The accent glow, waiting in the top-left corner. */
+  .project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%);
+    opacity: 0;
+    transition: opacity .35s;
+  }
+
+  .project-card:hover {
+    text-decoration: none;
+    border-color: color-mix(in srgb, var(--accent) 28%, var(--card-rule));
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px -16px color-mix(in srgb, var(--accent) 55%, rgb(0 0 0 / .4));
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .project-card:focus-visible {
+    outline-offset: 3px;
+    border-radius: 14px;
+  }
+
+  .project-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    outline: 1px solid rgb(0 0 0 / .08);
+    outline-offset: -1px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 6px 14px -6px rgb(0 0 0 / .25);
+    transition: transform .3s cubic-bezier(.3, .7, .4, 1.4);
+  }
+
+  .dark .project-icon {
+    outline-color: rgb(255 255 255 / .12);
+    box-shadow: 0 6px 14px -6px rgb(0 0 0 / .7);
+  }
+
+  .project-card:hover .project-icon {
+    transform: rotate(-6deg) scale(1.05);
+  }
+
+  /* Round arrow button: an outline at rest, filled with ink on hover. */
+  .project-go {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--card-rule);
+    border-radius: 999px;
+    color: var(--muted);
+    transition: background-color .2s, border-color .2s, color .2s;
+  }
+
+  .project-go svg {
+    transition: transform .2s;
+  }
+
+  .project-card:hover .project-go {
+    background: var(--link);
+    border-color: var(--link);
+    color: var(--paper);
+  }
+
+  .project-card:hover .project-go svg {
+    transform: translate(1px, -1px);
+  }
+
+  .project-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    color: var(--link);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -.1px;
+  }
+
+  .project-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+
+  .project-motto {
+    margin-top: 6px;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .project-description {
+    margin: 4px 0 16px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px dashed var(--card-rule);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+
+  .project-tag {
+    padding: 0 7px;
+    border-radius: 999px;
+    background: var(--chip);
+    font-size: 10.5px;
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .project-icon,
+    .project-go svg {
+      transition: none;
+    }
+
+    .project-card:hover,
+    .project-card:hover .project-icon {
+      transform: none;
+    }
   }
 
   .kbd {

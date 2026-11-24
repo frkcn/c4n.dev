@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PostList from '../components/PostList.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import nullIcon from '../assets/apps/null.png';
+import monoIcon from '../assets/apps/mono.png';
 import { getPosts } from '../utils/posts';
 
 const posts = (await getPosts()).slice(0, 4);
@@ -20,8 +23,33 @@ const posts = (await getPosts()).slice(0, 4);
 		<h2 class="mb-2.5">Now</h2>
 		<ul class="dots space-y-[7px]">
 			<li>Leading engineering, product and design at <a href="https://tarfin.com" target="_blank" rel="noopener noreferrer">Tarfin</a>, since 2016</li>
-			<li>Building <a href="https://nullsql.com" target="_blank" rel="noopener noreferrer">Null</a>, a SQL client for macOS with AI that explains errors and suggests fixes</li>
+			<li>Building <a href="https://nullsql.com" target="_blank" rel="noopener noreferrer">Null</a> and <a href="https://mono.c4n.dev" target="_blank" rel="noopener noreferrer">Mono</a></li>
 		</ul>
+	</section>
+
+	<section class="mt-10">
+		<h2 class="mb-4">Projects</h2>
+		<div class="grid grid-cols-1 min-[440px]:grid-cols-2 gap-3">
+			<ProjectCard
+				name="Null"
+				href="https://nullsql.com"
+				icon={nullIcon}
+				platform="macOS"
+				motto="SELECT * FROM answers;"
+				mottoMono
+				description="A SQL client. Ask in plain words, get the SQL and the results."
+				accent="#22c55e"
+			/>
+			<ProjectCard
+				name="Mono"
+				href="https://mono.c4n.dev"
+				icon={monoIcon}
+				platform="iPhone"
+				motto="Write it down. Let it go."
+				description="Your tasks and notes, kept safe and simple."
+				accent="#ff4f00"
+			/>
+		</div>
 	</section>
 
 	{posts.length > 0 && (

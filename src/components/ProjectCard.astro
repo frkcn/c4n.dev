@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	name: string;
+	href: string;
+	icon: ImageMetadata;
+	platform: string;
+	/** The app's own motto, as its website states it. */
+	motto: string;
+	/** Set the motto in monospace (Null speaks SQL). */
+	mottoMono?: boolean;
+	description: string;
+	/** The app's brand colour: its dot and the hover glow. */
+	accent: string;
+}
+const { name, href, icon, platform, motto, mottoMono = false, description, accent } = Astro.props;
+const domain = new URL(href).hostname;
+---
+
+<a href={href} target="_blank" rel="noopener noreferrer" class="project-card" style={`--accent: ${accent}`}>
+	<div class="flex items-start justify-between">
+		<Image src={icon} alt="" width={44} height={44} densities={[2, 3]} class="project-icon" />
+		<span class="project-go" aria-hidden="true">
+			<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg>
+		</span>
+	</div>
+
+	<h3 class="project-name">{name}<span class="project-dot" aria-hidden="true"></span></h3>
+	<p class:list={['project-motto', mottoMono && 'font-mono text-[12.5px] tracking-tight']}>{motto}</p>
+	<p class="project-description">{description}</p>
+
+	<span class="project-meta">
+		<span>{domain}</span>
+		<span class="project-tag">{platform}</span>
+	</span>
+</a>
